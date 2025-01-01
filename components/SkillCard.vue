@@ -1,26 +1,19 @@
 <template>
-  <Card>
-    <template #title>{{ title }}</template>
-    <template #content>
-      <p>{{ description }}</p>
-    </template>
-    <template #footer>
-      <p>使用年数: {{ useYear }}年</p>
-    </template>
-  </Card>
+  <p class="m-0"></p>
+  <p class="pb-2">{{ title }}</p>
+  <p class="pb-2">{{ description }}</p>
+  <p class="pb-2">使用年数: {{ useYear }}年</p>
+  <Divider/>
 </template>
 
-<script setup>
-defineProps({
-  title: String,
-  useYear: Number,
-  description: String,
-});
-</script>
+<script lang="ts" setup>
+import { Divider } from 'primevue';
 
-<style scoped>
-p {
-  font-size: 1rem;
-  line-height: 1.5;
+type IProps = {
+  title: string;
+  useYear: number;
+  description: string;
 }
-</style>
+
+defineProps<IProps>();
+</script>
