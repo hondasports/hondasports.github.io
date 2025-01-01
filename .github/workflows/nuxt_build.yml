@@ -5,7 +5,7 @@ run-name: Build and deploy
 on:
   push:
     branches:
-      - main
+      - master
   workflow_dispatch:
 
 permissions:
