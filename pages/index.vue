@@ -13,6 +13,7 @@
     <div class="relative z-10">
       <!-- モバイル用ヘッダー -->
       <header class="md:hidden sticky top-0">
+        <div class="text-white text-center mb-4 backdrop-blur-sm bg-black/10 p-2 rounded">Tatsuya Miyamoto portfolio</div>
         <Menubar :model="menuItems" class="container mx-auto">
           <template #end>
             <Button @click="toggleDarkMode" class="p-button-text p-button-rounded">
@@ -25,9 +26,10 @@
       <!-- デスクトップレイアウト -->
       <div class="flex flex-col md:flex-row">
         <!-- サイドメニュー（左側・デスクトップのみ） -->
-        <aside class="hidden md:block w-64 h-screen sticky top-0">
-          <div class="flex justify-center items-center h-full p-4">
+        <aside class="hidden md:block w-64 h-screen">
+          <div class="flex items-center h-full p-4">
             <div class="space-y-4 w-full">
+              <div class="text-white text-center mb-4">Tatsuya Miyamoto portfolio</div>
               <Image src="/avatar.png" alt="プロフィール画像" class="w-32 h-32 rounded-full" />
               <nav class="space-y-4">
                 <Button v-for="item in menuItems"
@@ -103,7 +105,7 @@
       </div>
     </div>
   </div>
-  <footer class="py-4">
+  <footer class="py-4 mt-auto">
     <div class="mx-auto flex justify-center space-x-4">
       <Button icon="pi pi-github" class="p-button-text" as="a" href="https://github.com/hondasports" target="_blank"/>
       <Button icon="pi pi-twitter" class="p-button-text" as="a" href="https://x.com/hondasports8" target="_blank"/>
@@ -111,9 +113,6 @@
       <Button icon="pi pi-instagram" class="p-button-text" as="a" href="https://www.instagram.com/hondasports/" target="_blank"/>
       <Button label="Qiita" class="p-button-text" as="a" href="https://qiita.com/hondasports8" target="_blank" />
       <Button label="zenn" class="p-button-text" as="a" href="https://zenn.dev/hondasports" target="_blank" />
-    </div>
-    <div class="text-gray-300 text-center mt-4 py-2 text-sm">
-      © 2024 Tatsuya Miyamoto. All Rights Reserved.
     </div>
   </footer>
 </template>

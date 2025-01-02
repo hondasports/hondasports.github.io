@@ -3,6 +3,13 @@ import Aura from '@primevue/themes/aura';
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   app: {
+    head: {
+      meta: [
+        { name: 'copyright', content: '© 2024 Tatsuya Miyamoto' },
+        { name: 'author', content: 'Tatsuya Miyamoto' },
+        { name: 'description', content: 'Tatsuya Miyamoto Portfolio' }
+      ]
+    }
   },
   modules: [
     '@primevue/nuxt-module'
