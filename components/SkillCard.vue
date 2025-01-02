@@ -1,9 +1,11 @@
 <template>
-  <p class="m-0"></p>
-  <p class="pb-2">{{ title }}</p>
-  <p class="pb-2">{{ description }}</p>
-  <p class="pb-2">使用年数: {{ useYear }}年</p>
-  <Divider/>
+  <div>
+    <p class="m-0"></p>
+    <p class="pb-2">{{ title }}</p>
+    <p class="pb-2">{{ description }}</p>
+    <p class="pb-2">使用年数: {{ useYear }}年</p>
+    <Divider/>
+  </div>
 </template>
 
 <script lang="ts" setup>
