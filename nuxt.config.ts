@@ -1,36 +1,37 @@
-import Lara from '@primevue/themes/lara';
+import Lara from '@primevue/themes/lara'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  modules: ['@primevue/nuxt-module', '@nuxt/eslint', 'nuxt-gtag'],
+  devtools: { enabled: true },
   app: {
     head: {
       meta: [
         { name: 'copyright', content: '© 2024 Tatsuya Miyamoto' },
         { name: 'author', content: 'Tatsuya Miyamoto' },
-        { name: 'description', content: 'Tatsuya Miyamoto Portfolio' }
-      ]
-    }
+        { name: 'description', content: 'Tatsuya Miyamoto Portfolio' },
+      ],
+    },
   },
-  modules: [
-    '@primevue/nuxt-module', '@nuxt/eslint'
-  ],
-  eslint: {
-    checker: true,
-    config: {
-      stylistic: true // <---
-    }
-  },
-  compatibilityDate: '2024-11-01',
-  devtools: { enabled: true },
   css: [
     '~/assets/css/main.css',
-    'primeicons/primeicons.css'
+    'primeicons/primeicons.css',
   ],
+  compatibilityDate: '2024-11-01',
   postcss: {
     plugins: {
       tailwindcss: {},
       autoprefixer: {},
     },
+  },
+  eslint: {
+    checker: true,
+    config: {
+      stylistic: true, // <---
+    },
+  },
+  gtag: {
+    id: 'G-TDKJWJFJS0',
   },
   primevue: {
     options: {
@@ -38,8 +39,8 @@ export default defineNuxtConfig({
         preset: Lara,
         options: {
           darkModeSelector: '.p-dark',
-        }
+        },
       },
-    }
-  }
+    },
+  },
 })
