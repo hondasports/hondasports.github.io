@@ -1,3 +1,4 @@
+[![nuxt build and deploy](https://github.com/hondasports/hondasports.github.io/actions/workflows/nuxt_build.yml/badge.svg)](https://github.com/hondasports/hondasports.github.io/actions/workflows/nuxt_build.yml)
 # Nuxt Minimal Starter
 
 Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.

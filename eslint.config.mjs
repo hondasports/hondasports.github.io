@@ -8,5 +8,5 @@ export default withNuxt({
   ],
   rules: {
     '@typescript-eslint/explicit-function-return-type': 'error',
-  }
-});
+  },
+})
