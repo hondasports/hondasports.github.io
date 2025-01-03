@@ -12,8 +12,14 @@ export default defineNuxtConfig({
     }
   },
   modules: [
-    '@primevue/nuxt-module'
+    '@primevue/nuxt-module', '@nuxt/eslint'
   ],
+  eslint: {
+    checker: true,
+    config: {
+      stylistic: true // <---
+    }
+  },
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
   css: [
