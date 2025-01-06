@@ -2,7 +2,7 @@ import Lara from '@primevue/themes/lara'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ['@primevue/nuxt-module', '@nuxt/eslint', 'nuxt-gtag'],
+  modules: ['@primevue/nuxt-module', '@nuxt/eslint', 'nuxt-gtag', '@nuxt/image'],
   devtools: { enabled: true },
   app: {
     head: {

@@ -3,9 +3,11 @@
     <!-- 背景固定 + オーバーレイ -->
     <div class="relative min-h-screen">
       <!-- 固定背景 -->
-      <div
-        class="fixed inset-0 bg-cover bg-center bg-no-repeat z-0"
-        style="background-image: url('/background.jpg');"
+      <NuxtImg
+        class="w-full h-full fixed inset-0 z-0"
+        format="webp"
+        src="/background.jpg"
+        alt="背景画像"
       />
       <!-- 半透明オーバーレイ -->
       <div class="fixed inset-0 bg-black/10 backdrop-blur-sm z-0" />
