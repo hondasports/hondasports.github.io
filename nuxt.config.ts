@@ -31,7 +31,7 @@ export default defineNuxtConfig({
     },
   },
   gtag: {
-    id: 'G-TDKJWJFJS0',
+    id: 'G-K2JZ4CFDNZ',
   },
   primevue: {
     options: {
