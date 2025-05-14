@@ -18,7 +18,7 @@
     "@nuxt/image": "1.9.0",
     "@primevue/themes": "^4.2.5",
     "husky": "^9.1.7",
-    "nuxt": "^3.16.0",
+    "nuxt": "^3.17.3",
     "nuxt-gtag": "3.0.2",
     "primeicons": "^7.0.0",
     "primevue": "^4.2.5",
