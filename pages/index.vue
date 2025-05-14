@@ -15,17 +15,19 @@
       <!-- コンテンツ -->
       <div class="relative z-10">
         <!-- モバイル用ヘッダー -->
-        <header class="md:hidden sticky top-0">
-          <div class="text-white text-center mb-4 backdrop-blur-sm bg-black/10 p-2 rounded">
-            Tatsuya Miyamoto portfolio
-          </div>
-          <Menubar
-            :model="menuItems"
-            class="container mx-auto"
-          >
-            <template #end>
+        <header class="md:hidden sticky top-0 z-20 bg-black/10 backdrop-blur-sm p-2">
+          <div class="container mx-auto flex justify-between items-center">
+            <div class="text-white text-lg">
+              Tatsuya Miyamoto portfolio
+            </div>
+            <div>
               <Button
-                class="p-button-text p-button-rounded"
+                icon="pi pi-bars"
+                class="p-button-text text-white"
+                @click="mobileMenuVisible = true"
+              />
+              <Button
+                class="p-button-text p-button-rounded text-white ml-2"
                 @click="toggleDarkMode"
               >
                 <i
@@ -33,14 +35,28 @@
                   :class="isDarkMode ? 'pi-sun' : 'pi-moon'"
                 />
               </Button>
-            </template>
-          </Menubar>
+            </div>
+          </div>
         </header>
+
+        <!-- モバイル用サイドバーメニュー -->
+        <Sidebar v-model:visible="mobileMenuVisible" header="Menu" position="right">
+          <nav class="space-y-4 p-4">
+            <Button
+              v-for="item in menuItems"
+              :key="item.label"
+              class="w-full p-button-text text-left"
+              @click="() => { item.command(); mobileMenuVisible = false; }"
+            >
+              {{ item.label }}
+            </Button>
+          </nav>
+        </Sidebar>
 
         <!-- デスクトップレイアウト -->
         <div class="flex flex-col md:flex-row">
           <!-- サイドメニュー（左側・デスクトップのみ） -->
-          <aside class="hidden md:block w-64 h-screen">
+          <aside class="hidden md:block w-64 h-screen sticky top-0">
             <div class="flex items-center h-full p-4">
               <div class="space-y-4 w-full">
                 <div class="text-white text-center mb-4">
@@ -49,7 +65,7 @@
                 <Image
                   src="/avatar.png"
                   alt="プロフィール画像"
-                  class="w-32 h-32 rounded-full"
+                  class="w-32 h-32 rounded-full mx-auto"
                 />
                 <nav class="space-y-4">
                   <Button
@@ -75,7 +91,7 @@
           </aside>
 
           <!-- メインコンテンツ（右側） -->
-          <main class="flex-1 px-4 pb-4 pt-20 md:p-8 md:h-screen md:overflow-y-auto">
+          <main class="flex-1 px-4 pb-4 pt-20 md:pt-8 md:p-8 md:h-screen md:overflow-y-auto">
             <div class="max-w-4xl mx-auto">
               <section
                 id="top"
@@ -224,7 +240,16 @@
 </template>
 
 <script lang="ts" setup>
+import { ref } from 'vue'
 import SkillCard from '../components/SkillCard.vue'
+import { Button } from '#build/components'; // PrimeVueのButtonを明示的にインポート
+import { Sidebar } from '#build/components'; // PrimeVueのSidebarを明示的にインポート
+import { Menubar } from '#build/components'; // PrimeVueのMenubarを明示的にインポート
+import { Card } from '#build/components'; // PrimeVueのCardを明示的にインポート
+import { Image } from '#build/components'; // PrimeVueのImageを明示的にインポート
+import { Divider } from '#build/components'; // PrimeVueのDividerを明示的にインポート
+
+const mobileMenuVisible = ref(false)
 
 const toggleDarkMode = (): void => {
   document.documentElement.classList.toggle('p-dark')
@@ -234,10 +259,10 @@ const toggleDarkMode = (): void => {
 const isDarkMode = ref(document?.documentElement.classList.contains('dark'))
 
 const menuItems = [
-  { label: 'トップ', command: (): void => document.getElementById('top')?.scrollIntoView({ behavior: 'smooth' }) },
-  { label: '自己紹介', command: (): void => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }) },
-  { label: 'スキル', command: (): void => document.getElementById('skill')?.scrollIntoView({ behavior: 'smooth' }) },
-  { label: 'コンテンツ', command: (): void => document.getElementById('content')?.scrollIntoView({ behavior: 'smooth' }) },
+  { label: 'トップ', command: (): void => { document.getElementById('top')?.scrollIntoView({ behavior: 'smooth' }); mobileMenuVisible.value = false; } },
+  { label: '自己紹介', command: (): void => { document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }); mobileMenuVisible.value = false; } },
+  { label: 'スキル', command: (): void => { document.getElementById('skill')?.scrollIntoView({ behavior: 'smooth' }); mobileMenuVisible.value = false; } },
+  { label: 'コンテンツ', command: (): void => { document.getElementById('content')?.scrollIntoView({ behavior: 'smooth' }); mobileMenuVisible.value = false; } },
 ]
 
 const skills = ref([
@@ -254,6 +279,13 @@ html {
   scroll-behavior: smooth;
 }
 section[id] {
-  scroll-margin-top: 5rem;
+  scroll-margin-top: 5rem; /* モバイルヘッダーの高さを考慮 */
 }
+
+/* PrimeVue Sidebarのz-index調整 */
+.p-sidebar {
+  z-index: 1000 !important; 
+}
+
 </style>
+
