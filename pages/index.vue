@@ -75,7 +75,7 @@
           </aside>
 
           <!-- メインコンテンツ（右側） -->
-          <main class="flex-1 p-4 md:p-8 md:h-screen md:overflow-y-auto">
+          <main class="flex-1 px-4 pb-4 pt-20 md:p-8 md:h-screen md:overflow-y-auto">
             <div class="max-w-4xl mx-auto">
               <section
                 id="top"
