@@ -40,7 +40,11 @@
         </header>
 
         <!-- モバイル用サイドバーメニュー -->
-        <Sidebar v-model:visible="mobileMenuVisible" header="Menu" position="right">
+        <Sidebar
+          v-model:visible="mobileMenuVisible"
+          header="Menu"
+          position="right"
+        >
           <nav class="space-y-4 p-4">
             <Button
               v-for="item in menuItems"
@@ -241,13 +245,12 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
+import Button from 'primevue/button'
+import Sidebar from 'primevue/sidebar'
+import Card from 'primevue/card'
+import Image from 'primevue/image'
+import Divider from 'primevue/divider'
 import SkillCard from '../components/SkillCard.vue'
-import { Button } from '#build/components'; // PrimeVueのButtonを明示的にインポート
-import { Sidebar } from '#build/components'; // PrimeVueのSidebarを明示的にインポート
-import { Menubar } from '#build/components'; // PrimeVueのMenubarを明示的にインポート
-import { Card } from '#build/components'; // PrimeVueのCardを明示的にインポート
-import { Image } from '#build/components'; // PrimeVueのImageを明示的にインポート
-import { Divider } from '#build/components'; // PrimeVueのDividerを明示的にインポート
 
 const mobileMenuVisible = ref(false)
 
@@ -259,10 +262,22 @@ const toggleDarkMode = (): void => {
 const isDarkMode = ref(document?.documentElement.classList.contains('dark'))
 
 const menuItems = [
-  { label: 'トップ', command: (): void => { document.getElementById('top')?.scrollIntoView({ behavior: 'smooth' }); mobileMenuVisible.value = false; } },
-  { label: '自己紹介', command: (): void => { document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }); mobileMenuVisible.value = false; } },
-  { label: 'スキル', command: (): void => { document.getElementById('skill')?.scrollIntoView({ behavior: 'smooth' }); mobileMenuVisible.value = false; } },
-  { label: 'コンテンツ', command: (): void => { document.getElementById('content')?.scrollIntoView({ behavior: 'smooth' }); mobileMenuVisible.value = false; } },
+  { label: 'トップ', command: (): void => {
+    document.getElementById('top')?.scrollIntoView({ behavior: 'smooth' })
+    mobileMenuVisible.value = false
+  } },
+  { label: '自己紹介', command: (): void => {
+    document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })
+    mobileMenuVisible.value = false
+  } },
+  { label: 'スキル', command: (): void => {
+    document.getElementById('skill')?.scrollIntoView({ behavior: 'smooth' })
+    mobileMenuVisible.value = false
+  } },
+  { label: 'コンテンツ', command: (): void => {
+    document.getElementById('content')?.scrollIntoView({ behavior: 'smooth' })
+    mobileMenuVisible.value = false
+  } },
 ]
 
 const skills = ref([
@@ -284,8 +299,6 @@ section[id] {
 
 /* PrimeVue Sidebarのz-index調整 */
 .p-sidebar {
-  z-index: 1000 !important; 
+  z-index: 1000 !important;
 }
-
 </style>
-
