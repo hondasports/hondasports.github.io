@@ -40,7 +40,7 @@
         </header>
 
         <!-- モバイル用サイドバーメニュー -->
-        <Sidebar
+        <Drawer
           v-model:visible="mobileMenuVisible"
           header="Menu"
           position="right"
@@ -55,7 +55,7 @@
               {{ item.label }}
             </Button>
           </nav>
-        </Sidebar>
+        </Drawer>
 
         <!-- デスクトップレイアウト -->
         <div class="flex flex-col md:flex-row md:h-screen md:overflow-hidden">
@@ -247,7 +247,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import Button from 'primevue/button'
-import Sidebar from 'primevue/sidebar'
+import Drawer from 'primevue/drawer'
 import Card from 'primevue/card'
 import Image from 'primevue/image'
 import Divider from 'primevue/divider'
@@ -307,8 +307,8 @@ section[id] {
   display: none; /* Chrome/Safari/Opera */
 }
 
-/* PrimeVue Sidebarのz-index調整 */
-.p-sidebar {
+/* PrimeVue Drawerのz-index調整 */
+.p-drawer {
   z-index: 1000 !important;
 }
 </style>
