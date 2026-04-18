@@ -1,4 +1,4 @@
-import Lara from '@primevue/themes/lara'
+import Lara from '@primeuix/themes/lara'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
