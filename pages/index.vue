@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- 背景固定 + オーバーレイ -->
-    <div class="relative min-h-screen">
+    <div class="relative min-h-screen md:h-screen md:overflow-hidden">
       <!-- 固定背景 -->
       <NuxtImg
         class="w-full h-full fixed inset-0 z-0"
@@ -58,7 +58,7 @@
         </Sidebar>
 
         <!-- デスクトップレイアウト -->
-        <div class="flex flex-col md:flex-row">
+        <div class="flex flex-col md:flex-row md:h-screen md:overflow-hidden">
           <!-- サイドメニュー（左側・デスクトップのみ） -->
           <aside class="hidden md:block w-64 h-screen sticky top-0">
             <div class="flex items-center h-full p-4">
@@ -95,7 +95,7 @@
           </aside>
 
           <!-- メインコンテンツ（右側） -->
-          <main class="flex-1 px-4 pb-4 pt-20 md:pt-8 md:p-8 md:h-screen md:overflow-y-auto">
+          <main class="flex-1 px-4 pb-4 pt-20 md:pt-8 md:p-8 md:h-screen md:overflow-y-auto scrollbar-hidden">
             <div class="max-w-4xl mx-auto">
               <section
                 id="top"
@@ -190,56 +190,57 @@
                 </Card>
               </section>
             </div>
+
+            <footer class="py-4 mt-8">
+              <div class="mx-auto flex justify-center space-x-4">
+                <Button
+                  icon="pi pi-github"
+                  class="p-button-text"
+                  as="a"
+                  href="https://github.com/hondasports"
+                  target="_blank"
+                />
+                <Button
+                  icon="pi pi-twitter"
+                  class="p-button-text"
+                  as="a"
+                  href="https://x.com/hondasports8"
+                  target="_blank"
+                />
+                <Button
+                  icon="pi pi-facebook"
+                  class="p-button-text"
+                  as="a"
+                  href="https://www.facebook.com/miyamoto.tatsuya"
+                  target="_blank"
+                />
+                <Button
+                  icon="pi pi-instagram"
+                  class="p-button-text"
+                  as="a"
+                  href="https://www.instagram.com/hondasports/"
+                  target="_blank"
+                />
+                <Button
+                  label="Qiita"
+                  class="p-button-text"
+                  as="a"
+                  href="https://qiita.com/hondasports8"
+                  target="_blank"
+                />
+                <Button
+                  label="zenn"
+                  class="p-button-text"
+                  as="a"
+                  href="https://zenn.dev/hondasports"
+                  target="_blank"
+                />
+              </div>
+            </footer>
           </main>
         </div>
       </div>
     </div>
-    <footer class="py-4 mt-auto">
-      <div class="mx-auto flex justify-center space-x-4">
-        <Button
-          icon="pi pi-github"
-          class="p-button-text"
-          as="a"
-          href="https://github.com/hondasports"
-          target="_blank"
-        />
-        <Button
-          icon="pi pi-twitter"
-          class="p-button-text"
-          as="a"
-          href="https://x.com/hondasports8"
-          target="_blank"
-        />
-        <Button
-          icon="pi pi-facebook"
-          class="p-button-text"
-          as="a"
-          href="https://www.facebook.com/miyamoto.tatsuya"
-          target="_blank"
-        />
-        <Button
-          icon="pi pi-instagram"
-          class="p-button-text"
-          as="a"
-          href="https://www.instagram.com/hondasports/"
-          target="_blank"
-        />
-        <Button
-          label="Qiita"
-          class="p-button-text"
-          as="a"
-          href="https://qiita.com/hondasports8"
-          target="_blank"
-        />
-        <Button
-          label="zenn"
-          class="p-button-text"
-          as="a"
-          href="https://zenn.dev/hondasports"
-          target="_blank"
-        />
-      </div>
-    </footer>
   </div>
 </template>
 
@@ -295,6 +296,15 @@ html {
 }
 section[id] {
   scroll-margin-top: 5rem; /* モバイルヘッダーの高さを考慮 */
+}
+
+/* スクロールバーを非表示（スクロール機能は維持） */
+.scrollbar-hidden {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none; /* Chrome/Safari/Opera */
 }
 
 /* PrimeVue Sidebarのz-index調整 */
