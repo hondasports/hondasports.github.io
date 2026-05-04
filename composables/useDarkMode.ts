@@ -1,9 +1,13 @@
-export function useDarkMode(): { isDarkMode: Ref<boolean>, toggleDarkMode: () => void } {
-  const isDarkMode = ref(false)
+const isDarkMode = ref(false)
+let initialized = false
 
-  onMounted(() => {
-    isDarkMode.value = document.documentElement.classList.contains('p-dark')
-  })
+export function useDarkMode(): { isDarkMode: Ref<boolean>, toggleDarkMode: () => void } {
+  if (!initialized) {
+    onMounted(() => {
+      isDarkMode.value = document.documentElement.classList.contains('p-dark')
+    })
+    initialized = true
+  }
 
   const toggleDarkMode = (): void => {
     document.documentElement.classList.toggle('p-dark')
