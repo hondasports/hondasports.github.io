@@ -57,7 +57,7 @@ export default defineNuxtConfig({
     },
     components: {
       prefix: '',
-      include: ['Button', 'Card', 'Drawer', 'Image', 'Divider'],
+      include: ['Button', 'Drawer'],
     },
   },
 })
