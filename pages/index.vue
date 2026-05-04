@@ -23,10 +23,12 @@
             <div>
               <Button
                 icon="pi pi-bars"
+                aria-label="メニューを開く"
                 class="p-button-text text-white"
                 @click="mobileMenuVisible = true"
               />
               <Button
+                :aria-label="isDarkMode ? 'ライトモードに切り替え' : 'ダークモードに切り替え'"
                 class="p-button-text p-button-rounded text-white ml-2"
                 @click="toggleDarkMode"
               >
@@ -81,7 +83,8 @@
                     {{ item.label }}
                   </Button>
                   <Button
-                    class="w-full p-button-text p-button-rounded "
+                    :aria-label="isDarkMode ? 'ライトモードに切り替え' : 'ダークモードに切り替え'"
+                    class="w-full p-button-text p-button-rounded"
                     @click="toggleDarkMode"
                   >
                     <i
@@ -170,8 +173,9 @@
                       <Divider />
                       <p class="mb-2">
                         <a
-                          href="http://applion.jp/iphone/app/633386996/"
+                          href="https://applion.jp/iphone/app/633386996/"
                           target="_blank"
+                          rel="noopener noreferrer"
                         >ニコカレ - ニコニコカレンダー</a>
                       </p>
                       <p class="mb-2">
@@ -182,6 +186,7 @@
                         <a
                           href="https://x.com/Bun_chan_Bot/"
                           target="_blank"
+                          rel="noopener noreferrer"
                         >Bun-chan-bot</a>
                       </p>
                       <p>ラズパイを使いたいというのと、日中部屋を留守にするのでモニタリングするために作成。</p>
@@ -195,31 +200,39 @@
               <div class="mx-auto flex justify-center space-x-4">
                 <Button
                   icon="pi pi-github"
+                  aria-label="GitHub"
                   class="p-button-text"
                   as="a"
                   href="https://github.com/hondasports"
                   target="_blank"
+                  rel="noopener noreferrer"
                 />
                 <Button
                   icon="pi pi-twitter"
+                  aria-label="X (Twitter)"
                   class="p-button-text"
                   as="a"
                   href="https://x.com/hondasports8"
                   target="_blank"
+                  rel="noopener noreferrer"
                 />
                 <Button
                   icon="pi pi-facebook"
+                  aria-label="Facebook"
                   class="p-button-text"
                   as="a"
                   href="https://www.facebook.com/miyamoto.tatsuya"
                   target="_blank"
+                  rel="noopener noreferrer"
                 />
                 <Button
                   icon="pi pi-instagram"
+                  aria-label="Instagram"
                   class="p-button-text"
                   as="a"
                   href="https://www.instagram.com/hondasports/"
                   target="_blank"
+                  rel="noopener noreferrer"
                 />
                 <Button
                   label="Qiita"
@@ -227,13 +240,15 @@
                   as="a"
                   href="https://qiita.com/hondasports8"
                   target="_blank"
+                  rel="noopener noreferrer"
                 />
                 <Button
-                  label="zenn"
+                  label="Zenn"
                   class="p-button-text"
                   as="a"
                   href="https://zenn.dev/hondasports"
                   target="_blank"
+                  rel="noopener noreferrer"
                 />
               </div>
             </footer>
@@ -245,22 +260,19 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
-import Button from 'primevue/button'
-import Drawer from 'primevue/drawer'
-import Card from 'primevue/card'
-import Image from 'primevue/image'
-import Divider from 'primevue/divider'
-import SkillCard from '../components/SkillCard.vue'
+import { ref, onMounted } from 'vue'
 
 const mobileMenuVisible = ref(false)
+const isDarkMode = ref(false)
+
+onMounted(() => {
+  isDarkMode.value = document.documentElement.classList.contains('p-dark')
+})
 
 const toggleDarkMode = (): void => {
   document.documentElement.classList.toggle('p-dark')
   isDarkMode.value = !isDarkMode.value
 }
-
-const isDarkMode = ref(document?.documentElement.classList.contains('dark'))
 
 const menuItems = [
   { label: 'トップ', command: (): void => {

@@ -1,1 +1,4 @@
+User-agent: *
+Allow: /
 
+Sitemap: https://hondasports.github.io/sitemap.xml

@@ -6,10 +6,24 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   app: {
     head: {
+      htmlAttrs: {
+        lang: 'ja',
+      },
+      title: 'Tatsuya Miyamoto Portfolio',
       meta: [
-        { name: 'copyright', content: '© 2024 Tatsuya Miyamoto' },
+        { name: 'copyright', content: `© ${new Date().getFullYear()} Tatsuya Miyamoto` },
         { name: 'author', content: 'Tatsuya Miyamoto' },
-        { name: 'description', content: 'Tatsuya Miyamoto Portfolio' },
+        { name: 'description', content: 'Tatsuya Miyamoto のポートフォリオサイト。プログラミングスキル、経歴、プロジェクトを紹介しています。' },
+        { property: 'og:title', content: 'Tatsuya Miyamoto Portfolio' },
+        { property: 'og:description', content: 'Tatsuya Miyamoto のポートフォリオサイト。プログラミングスキル、経歴、プロジェクトを紹介しています。' },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:url', content: 'https://hondasports.github.io/' },
+        { property: 'og:image', content: 'https://hondasports.github.io/avatar.png' },
+        { property: 'og:locale', content: 'ja_JP' },
+        { name: 'twitter:card', content: 'summary' },
+        { name: 'twitter:title', content: 'Tatsuya Miyamoto Portfolio' },
+        { name: 'twitter:description', content: 'Tatsuya Miyamoto のポートフォリオサイト。プログラミングスキル、経歴、プロジェクトを紹介しています。' },
+        { name: 'twitter:image', content: 'https://hondasports.github.io/avatar.png' },
       ],
     },
   },
@@ -43,7 +57,7 @@ export default defineNuxtConfig({
     },
     components: {
       prefix: '',
-      include: ['Button', 'Card', 'Sidebar', 'Image', 'Divider'],
+      include: ['Button', 'Card', 'Drawer', 'Image', 'Divider'],
     },
   },
 })
