@@ -1,76 +1,99 @@
 [![nuxt build and deploy](https://github.com/hondasports/hondasports.github.io/actions/workflows/nuxt_build.yml/badge.svg)](https://github.com/hondasports/hondasports.github.io/actions/workflows/nuxt_build.yml)
-# Nuxt Minimal Starter
+[![CI](https://github.com/hondasports/hondasports.github.io/actions/workflows/ci.yml/badge.svg)](https://github.com/hondasports/hondasports.github.io/actions/workflows/ci.yml)
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+# Tatsuya Miyamoto Portfolio
 
-## Setup
+個人ポートフォリオサイト。プログラミングスキル、経歴、プロジェクトを紹介しています。
 
-Make sure to install dependencies:
+🔗 **https://hondasports.github.io/**
+
+## 技術スタック
+
+| カテゴリ | 技術 |
+|----------|------|
+| フレームワーク | [Nuxt 4](https://nuxt.com/) (Vue 3 + TypeScript) |
+| UIコンポーネント | [PrimeVue](https://primevue.org/) (Lara テーマ) |
+| CSS | [Tailwind CSS 4](https://tailwindcss.com/) |
+| ホスティング | GitHub Pages (SSG) |
+| パッケージマネージャ | pnpm |
+
+## セットアップ
 
 ```bash
-# npm
-npm install
+# Node.js バージョン (.nvmrc で管理)
+nvm install
+nvm use
 
-# pnpm
+# pnpm を有効化
+corepack enable
+corepack prepare pnpm@9.14.4 --activate
+
+# 依存関係インストール
 pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
+## 開発
 
 ```bash
-# npm
-npm run dev
+# 開発サーバー起動 (http://localhost:3000)
+pnpm run dev
 
-# pnpm
-pnpm dev
+# ESLint
+pnpm run lint
 
-# yarn
-yarn dev
-
-# bun
-bun run dev
+# ESLint (自動修正)
+pnpm run format
 ```
 
-## Production
-
-Build the application for production:
+## ビルド & デプロイ
 
 ```bash
-# npm
-npm run build
+# 静的サイト生成 (.output/public → dist)
+pnpm run generate
 
-# pnpm
-pnpm build
+# プロダクションビルド
+pnpm run build
 
-# yarn
-yarn build
-
-# bun
-bun run build
+# プレビュー
+pnpm run preview
 ```
 
-Locally preview production build:
+デプロイは `master` ブランチへの push 時に GitHub Actions で自動実行されます。
 
-```bash
-# npm
-npm run preview
+## プロジェクト構成
 
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
+```
+├── pages/index.vue          # メインページ
+├── components/
+│   ├── HeroSection.vue      # ヒーローセクション (100vh)
+│   ├── TheNavbar.vue        # スクロール連動ナビバー
+│   ├── SkillCard.vue        # スキルカード + プログレスバー
+│   ├── AppFooter.vue        # フッター
+│   └── sections/            # 各セクションコンポーネント
+├── composables/
+│   ├── useDarkMode.ts       # ダークモード管理
+│   ├── useNavigation.ts     # ナビゲーション
+│   └── useScrollAnimation.ts # スクロールアニメーション
+├── data/skills.ts           # スキルデータ定義
+├── assets/css/main.css      # Tailwind CSS エントリ
+└── nuxt.config.ts           # Nuxt 設定
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## 機能
+
+- **ヒーロー + フルワイドセクション**: モダンなLP風レイアウト
+- **ダークモード**: PrimeVue `.p-dark` クラスによるテーマ切り替え
+- **レスポンシブ対応**: デスクトップ (ナビバー) / モバイル (Drawer メニュー)
+- **スクロールアニメーション**: Intersection Observer によるフェードイン
+- **スキルプログレスバー**: 使用年数に応じた視覚的表示
+- **SEO最適化**: OGP / Twitter Card メタタグ、robots.txt
+
+## CI/CD
+
+- **PR時**: ESLint + ビルドチェック (`ci.yml`)
+- **master push時**: `pnpm generate` → GitHub Pages デプロイ (`nuxt_build.yml`)
+- **セキュリティ**: CodeQL 分析 (GitHub Advanced Security)
+
+## ライセンス
+
+Private
