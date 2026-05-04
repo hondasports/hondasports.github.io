@@ -15,8 +15,6 @@
 </template>
 
 <script lang="ts" setup>
-import { Divider } from 'primevue'
-
 type IProps = {
   title: string
   useYear: number
