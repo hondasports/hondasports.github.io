@@ -1,30 +1,22 @@
 <template>
   <section
     id="skill"
-    class="mb-12"
+    class="py-16 md:py-24 bg-surface-0 dark:bg-surface-900"
   >
-    <Card>
-      <template #title>
-        <h2>
-          スキル
-        </h2>
-      </template>
-      <template #content>
-        <div class="pt-4">
-          <template
-            v-for="skill in skills"
-            :key="skill.title"
-          >
-            <SkillCard
-              class="mb-4"
-              :title="skill.title"
-              :description="skill.description"
-              :use-year="skill.useYear"
-            />
-          </template>
-        </div>
-      </template>
-    </Card>
+    <div class="max-w-4xl mx-auto px-4 md:px-8">
+      <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center text-surface-800 dark:text-surface-100">
+        スキル
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <SkillCard
+          v-for="skill in skills"
+          :key="skill.title"
+          :title="skill.title"
+          :description="skill.description"
+          :use-year="skill.useYear"
+        />
+      </div>
+    </div>
   </section>
 </template>
 

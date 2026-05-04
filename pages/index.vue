@@ -1,64 +1,53 @@
 <template>
   <div>
-    <!-- 背景固定 + オーバーレイ -->
-    <div class="relative min-h-screen md:h-screen md:overflow-hidden">
-      <!-- 固定背景 -->
-      <NuxtImg
-        class="w-full h-full fixed inset-0 z-0"
-        format="webp"
-        src="/background.jpg"
-        alt="背景画像"
-      />
-      <!-- 半透明オーバーレイ -->
-      <div class="fixed inset-0 bg-black/10 backdrop-blur-sm z-0" />
+    <TheNavbar
+      :menu-items="menuItems"
+      @open-menu="mobileMenuVisible = true"
+    />
 
-      <!-- コンテンツ -->
-      <div class="relative z-10">
-        <!-- モバイル用ヘッダー -->
-        <MobileHeader @open-menu="mobileMenuVisible = true" />
-
-        <!-- モバイル用サイドバーメニュー -->
-        <Drawer
-          v-model:visible="mobileMenuVisible"
-          header="Menu"
-          position="right"
+    <Drawer
+      v-model:visible="mobileMenuVisible"
+      header="Menu"
+      position="right"
+    >
+      <nav class="space-y-4 p-4">
+        <Button
+          v-for="item in menuItems"
+          :key="item.label"
+          class="w-full p-button-text text-left"
+          @click="() => { item.command(); mobileMenuVisible = false; }"
         >
-          <nav class="space-y-4 p-4">
-            <Button
-              v-for="item in menuItems"
-              :key="item.label"
-              class="w-full p-button-text text-left"
-              @click="() => { item.command(); mobileMenuVisible = false; }"
-            >
-              {{ item.label }}
-            </Button>
-          </nav>
-        </Drawer>
+          {{ item.label }}
+        </Button>
+      </nav>
+    </Drawer>
 
-        <!-- デスクトップレイアウト -->
-        <div class="flex flex-col md:flex-row md:h-screen md:overflow-hidden">
-          <!-- サイドメニュー（左側・デスクトップのみ） -->
-          <DesktopSidebar :menu-items="menuItems" />
+    <HeroSection />
 
-          <!-- メインコンテンツ（右側） -->
-          <main class="flex-1 px-4 pb-4 pt-20 md:pt-8 md:p-8 md:h-screen md:overflow-y-auto scrollbar-hidden">
-            <div class="max-w-4xl mx-auto">
-              <SectionsTopSection />
-              <SectionsAboutSection />
-              <SectionsSkillSection />
-              <SectionsContentSection />
-            </div>
-
-            <AppFooter />
-          </main>
-        </div>
-      </div>
+    <div class="animate-on-scroll">
+      <SectionsTopSection />
     </div>
+    <div class="animate-on-scroll">
+      <SectionsAboutSection />
+    </div>
+    <div class="animate-on-scroll">
+      <SectionsSkillSection />
+    </div>
+    <div class="animate-on-scroll">
+      <SectionsContentSection />
+    </div>
+
+    <AppFooter />
   </div>
 </template>
 
 <script lang="ts" setup>
 const { mobileMenuVisible, menuItems } = useNavigation()
+const { observeElements } = useScrollAnimation()
+
+onMounted(() => {
+  observeElements()
+})
 </script>
 
 <style>
@@ -66,19 +55,19 @@ html {
   scroll-behavior: smooth;
 }
 section[id] {
-  scroll-margin-top: 5rem; /* モバイルヘッダーの高さを考慮 */
+  scroll-margin-top: 4rem;
 }
 
-/* スクロールバーを非表示（スクロール機能は維持） */
-.scrollbar-hidden {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE/Edge */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
-.scrollbar-hidden::-webkit-scrollbar {
-  display: none; /* Chrome/Safari/Opera */
+.animate-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-/* PrimeVue Drawerのz-index調整 */
 .p-drawer {
   z-index: 1000 !important;
 }
