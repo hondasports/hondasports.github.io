@@ -1,20 +1,21 @@
 <template>
-  <footer class="py-8 bg-surface-900 dark:bg-surface-950 text-surface-400">
-    <div class="max-w-4xl mx-auto px-4 md:px-8 text-center">
-      <div class="flex justify-center gap-3 mb-4">
+  <footer class="py-10 bg-surface-900 dark:bg-surface-950 text-surface-400">
+    <div class="max-w-5xl mx-auto px-4 md:px-8 text-center">
+      <div class="flex justify-center gap-2 mb-6">
         <Button
           v-for="link in socialLinks"
           :key="link.label"
           :icon="link.icon"
           :label="link.text"
           :aria-label="link.label"
-          class="p-button-text p-button-rounded !text-surface-400 hover:!text-white"
+          class="p-button-text p-button-rounded !text-surface-400 hover:!text-white hover:!bg-surface-800 transition-colors"
           as="a"
           :href="link.href"
           target="_blank"
           rel="noopener noreferrer"
         />
       </div>
+      <div class="w-16 h-px bg-surface-700 mx-auto mb-6" />
       <p class="text-sm text-surface-500">
         &copy; {{ currentYear }} Tatsuya Miyamoto
       </p>
