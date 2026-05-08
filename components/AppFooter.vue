@@ -1,5 +1,5 @@
 <template>
-  <footer class="py-10 bg-surface-900 dark:bg-surface-950 text-surface-400">
+  <footer class="py-10 bg-black/40 backdrop-blur-md border-t border-white/10">
     <div class="max-w-5xl mx-auto px-4 md:px-8 text-center">
       <div class="flex justify-center gap-2 mb-6">
         <Button
@@ -8,15 +8,15 @@
           :icon="link.icon"
           :label="link.text"
           :aria-label="link.label"
-          class="p-button-text p-button-rounded !text-surface-400 hover:!text-white hover:!bg-surface-800 transition-colors"
+          class="p-button-text p-button-rounded !text-white/40 hover:!text-white hover:!bg-white/10 transition-colors"
           as="a"
           :href="link.href"
           target="_blank"
           rel="noopener noreferrer"
         />
       </div>
-      <div class="w-16 h-px bg-surface-700 mx-auto mb-6" />
-      <p class="text-sm text-surface-500">
+      <div class="w-16 h-px bg-white/20 mx-auto mb-6" />
+      <p class="text-sm text-white/30">
         &copy; {{ currentYear }} Tatsuya Miyamoto
       </p>
     </div>
