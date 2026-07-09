@@ -1,6 +1,6 @@
 <template>
-  <div class="relative min-h-screen bg-white dark:bg-black text-zinc-900 dark:text-white overflow-x-hidden">
-    <SpotlightBackground />
+  <div class="relative min-h-screen text-white overflow-x-hidden">
+    <BackgroundGraph />
 
     <div class="relative z-10">
       <TheNavbar
@@ -17,7 +17,7 @@
           <Button
             v-for="item in menuItems"
             :key="item.label"
-            class="w-full p-button-text text-left text-zinc-900 dark:text-white"
+            class="w-full p-button-text text-left text-white"
             @click="() => { item.command(); mobileMenuVisible = false; }"
           >
             {{ item.label }}
@@ -27,10 +27,7 @@
 
       <HeroSection />
 
-      <div class="space-y-6 md:space-y-10 pb-10">
-        <div class="animate-on-scroll">
-          <SectionsTopSection />
-        </div>
+      <div class="space-y-10 md:space-y-20 pb-16">
         <div class="animate-on-scroll">
           <SectionsAboutSection />
         </div>

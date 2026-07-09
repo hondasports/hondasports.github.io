@@ -1,54 +1,56 @@
 <template>
   <header
     class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
-    :class="scrolled ? 'bg-white/80 dark:bg-black/80 backdrop-blur-xl border-b border-zinc-200/50 dark:border-white/10' : 'bg-transparent'"
+    :class="scrolled ? 'bg-slate-950/80 backdrop-blur-xl border-b border-white/10' : 'bg-transparent'"
   >
     <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
       <a
         href="#top"
-        class="font-mono text-sm md:text-base font-semibold tracking-wider text-zinc-900 dark:text-white transition-colors hover:text-accent"
+        class="font-mono text-sm md:text-base font-semibold tracking-wider text-white transition-colors hover:text-accent"
       >
         Tatsuya Miyamoto
       </a>
 
-      <nav class="hidden md:flex items-center gap-1">
-        <Button
+      <nav class="hidden md:flex items-center gap-6">
+        <a
           v-for="item in menuItems"
           :key="item.label"
-          class="p-button-text p-button-sm text-zinc-900 dark:text-white/70 hover:text-accent dark:hover:text-accent hover:bg-transparent"
-          @click="item.command"
+          href="#"
+          class="text-sm text-white/70 hover:text-accent transition-colors"
+          @click.prevent="item.command"
         >
           {{ item.label }}
-        </Button>
-        <Button
+        </a>
+        <button
           :aria-label="isDarkMode ? 'ライトモードに切り替え' : 'ダークモードに切り替え'"
-          class="p-button-text p-button-rounded p-button-sm text-zinc-900 dark:text-white/70 hover:text-accent dark:hover:text-accent hover:bg-transparent"
+          class="p-2 rounded-full text-white/70 hover:text-accent transition-colors"
           @click="toggleDarkMode"
         >
           <i
             class="pi"
             :class="isDarkMode ? 'pi-sun' : 'pi-moon'"
           />
-        </Button>
+        </button>
       </nav>
 
-      <div class="flex md:hidden items-center gap-1">
-        <Button
+      <div class="flex md:hidden items-center gap-2">
+        <button
           :aria-label="isDarkMode ? 'ライトモードに切り替え' : 'ダークモードに切り替え'"
-          class="p-button-text p-button-rounded text-zinc-900 dark:text-white/70 hover:text-accent dark:hover:text-accent hover:bg-transparent"
+          class="p-2 rounded-full text-white/70 hover:text-accent transition-colors"
           @click="toggleDarkMode"
         >
           <i
             class="pi"
             :class="isDarkMode ? 'pi-sun' : 'pi-moon'"
           />
-        </Button>
-        <Button
-          icon="pi pi-bars"
+        </button>
+        <button
           aria-label="メニューを開く"
-          class="p-button-text text-zinc-900 dark:text-white/70 hover:text-accent dark:hover:text-accent hover:bg-transparent"
+          class="p-2 rounded-full text-white/70 hover:text-accent transition-colors"
           @click="$emit('open-menu')"
-        />
+        >
+          <i class="pi pi-bars" />
+        </button>
       </div>
     </div>
   </header>

@@ -3,7 +3,9 @@
 @custom-variant dark (&:where(.p-dark, .p-dark *));
 
 @theme {
-  --color-accent: #39ff14;
+  --color-main: #0f172a;
+  --color-accent: #22d3ee;
+  --color-sub: #a78bfa;
   --font-sans: "Inter", "Noto Sans JP", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", "Noto Sans JP", ui-monospace, monospace;
 }
@@ -49,6 +51,17 @@
   }
 
   .card-surface {
-    @apply bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 rounded-2xl;
+    @apply bg-white/5 border border-white/10 rounded-2xl backdrop-blur-sm shadow-xl shadow-black/20;
+  }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .noise-bg {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <footer class="py-12 border-t border-zinc-200 dark:border-white/10">
+  <footer class="py-12 border-t border-white/10">
     <div class="max-w-6xl mx-auto px-4 md:px-8 text-center">
       <div class="flex justify-center gap-4 mb-8">
         <a
@@ -9,7 +9,7 @@
           target="_blank"
           rel="noopener noreferrer"
           :aria-label="link.label"
-          class="text-2xl text-zinc-500 dark:text-white/40 hover:text-accent transition-colors"
+          class="text-2xl text-white/40 hover:text-accent transition-colors"
         >
           <i
             v-if="link.icon"
@@ -21,8 +21,8 @@
           >{{ link.text }}</span>
         </a>
       </div>
-      <div class="w-16 h-px bg-zinc-300 dark:bg-white/20 mx-auto mb-6" />
-      <p class="text-sm font-mono text-zinc-500 dark:text-white/30">
+      <div class="w-16 h-px bg-white/20 mx-auto mb-6" />
+      <p class="text-sm font-mono text-white/40">
         &copy; {{ currentYear }} Tatsuya Miyamoto
       </p>
     </div>
