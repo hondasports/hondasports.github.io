@@ -3,61 +3,58 @@
     id="content"
     class="px-4 md:px-8"
   >
-    <div class="max-w-5xl mx-auto">
-      <div class="rounded-3xl p-8 md:p-12 bg-white/10 dark:bg-white/5 backdrop-blur-xl border border-white/15 dark:border-white/10 shadow-2xl">
-        <div class="text-center mb-10">
-          <span class="inline-block text-xs font-semibold tracking-widest uppercase text-white/50 mb-3">Works</span>
-          <h2 class="text-3xl md:text-4xl font-bold text-white">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-[auto_1fr] gap-8 md:gap-16">
+      <div class="hidden md:flex items-start justify-center pt-12">
+        <span class="vertical-label text-4xl md:text-5xl font-black text-zinc-300 dark:text-white/10 uppercase">Works</span>
+      </div>
+
+      <div class="card-surface p-8 md:p-12">
+        <div class="text-center md:text-left mb-10">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-accent/30 text-accent text-xs font-mono font-medium mb-4">
+            <i class="pi pi-folder text-xs" />
+            <span>Projects</span>
+          </span>
+          <h2 class="text-3xl md:text-4xl font-black text-zinc-900 dark:text-white">
             コンテンツ
           </h2>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <a
             v-for="item in contents"
             :key="item.title"
             :href="item.href"
             target="_blank"
             rel="noopener noreferrer"
-            class="group relative block rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl bg-white/8 dark:bg-white/4 border border-white/10 hover:border-white/20 hover:bg-white/12 no-underline"
+            class="group relative overflow-hidden rounded-2xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 h-72 md:h-80 p-6 flex flex-col justify-between transition-all duration-500 hover:-translate-y-1 hover:border-accent/50 hover:shadow-2xl hover:shadow-accent/10"
           >
-            <div
-              class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              :style="{ background: `linear-gradient(135deg, ${item.color}10, ${item.color}20)` }"
+            <i
+              :class="item.icon"
+              class="absolute top-6 right-6 text-6xl opacity-10 transition-transform duration-500 group-hover:scale-110"
+              :style="{ color: item.color }"
             />
 
-            <div class="relative">
-              <div class="flex items-start justify-between gap-3 mb-4">
-                <div class="flex items-center gap-3">
-                  <div
-                    class="flex items-center justify-center w-12 h-12 rounded-xl transition-transform duration-300 group-hover:scale-110"
-                    :style="{ backgroundColor: `${item.color}25` }"
-                  >
-                    <i
-                      :class="item.icon"
-                      class="text-xl"
-                      :style="{ color: item.color }"
-                    />
-                  </div>
-                  <div>
-                    <h3 class="text-lg font-bold text-white group-hover:text-primary transition-colors">
-                      {{ item.title }}
-                    </h3>
-                    <span class="text-xs font-medium text-white/40">{{ item.category }}</span>
-                  </div>
-                </div>
-                <i class="pi pi-arrow-up-right text-white/30 group-hover:text-primary transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-              </div>
-              <p class="text-sm text-white/50 leading-relaxed mb-4">
+            <div class="relative z-10">
+              <span class="font-mono text-xs uppercase tracking-wider text-zinc-500 dark:text-white/40">{{ item.category }}</span>
+              <h3 class="text-2xl font-bold text-zinc-900 dark:text-white group-hover:text-accent transition-colors mt-1">
+                {{ item.title }}
+              </h3>
+            </div>
+
+            <div class="relative z-10">
+              <p class="text-sm text-zinc-600 dark:text-white/70 leading-relaxed mb-4 md:opacity-0 md:translate-y-2 md:group-hover:opacity-100 md:group-hover:translate-y-0 transition-all duration-500">
                 {{ item.description }}
               </p>
-              <div class="flex flex-wrap gap-2">
+              <div class="flex flex-wrap gap-2 md:opacity-0 md:translate-y-2 md:group-hover:opacity-100 md:group-hover:translate-y-0 transition-all duration-500 delay-75">
                 <span
                   v-for="tag in item.tags"
                   :key="tag"
-                  class="inline-block text-xs font-medium px-2.5 py-1 rounded-full bg-white/10 text-white/60 border border-white/8"
+                  class="text-xs font-mono px-2.5 py-1 rounded-full border border-zinc-300 dark:border-white/15 text-zinc-700 dark:text-white/70 group-hover:border-accent/30 group-hover:text-accent transition-colors"
                 >{{ tag }}</span>
               </div>
             </div>
+
+            <i class="pi pi-arrow-up-right absolute top-6 right-6 text-zinc-400 dark:text-white/30 group-hover:text-accent transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
           </a>
         </div>
       </div>

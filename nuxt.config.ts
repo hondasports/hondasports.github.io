@@ -8,8 +8,14 @@ export default defineNuxtConfig({
     head: {
       htmlAttrs: {
         lang: 'ja',
+        class: 'p-dark',
       },
       title: 'Tatsuya Miyamoto Portfolio',
+      link: [
+        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: 'anonymous' },
+        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap' },
+      ],
       meta: [
         { name: 'copyright', content: `© ${new Date().getFullYear()} Tatsuya Miyamoto` },
         { name: 'author', content: 'Tatsuya Miyamoto' },
