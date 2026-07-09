@@ -1,1 +1,54 @@
 @import "tailwindcss";
+
+@custom-variant dark (&:where(.p-dark, .p-dark *));
+
+@theme {
+  --color-accent: #39ff14;
+  --font-sans: "Inter", "Noto Sans JP", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Noto Sans JP", ui-monospace, monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply antialiased;
+  }
+}
+
+@layer components {
+  .outline-title {
+    color: currentColor;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: clamp(2px, 0.4vw, 4px) currentColor;
+    background-image: linear-gradient(to right, currentColor, currentColor);
+    background-size: calc(var(--fill, 0) * 100%) 100%;
+    background-repeat: no-repeat;
+    background-position: left;
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  .vertical-label {
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+    letter-spacing: 0.2em;
+  }
+
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .animate-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .card-surface {
+    @apply bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 rounded-2xl;
+  }
+}

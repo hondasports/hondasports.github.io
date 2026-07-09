@@ -1,22 +1,28 @@
 <template>
-  <footer class="py-10 bg-black/40 backdrop-blur-md border-t border-white/10">
-    <div class="max-w-5xl mx-auto px-4 md:px-8 text-center">
-      <div class="flex justify-center gap-2 mb-6">
-        <Button
+  <footer class="py-12 border-t border-zinc-200 dark:border-white/10">
+    <div class="max-w-6xl mx-auto px-4 md:px-8 text-center">
+      <div class="flex justify-center gap-4 mb-8">
+        <a
           v-for="link in socialLinks"
           :key="link.label"
-          :icon="link.icon"
-          :label="link.text"
-          :aria-label="link.label"
-          class="p-button-text p-button-rounded !text-white/40 hover:!text-white hover:!bg-white/10 transition-colors"
-          as="a"
           :href="link.href"
           target="_blank"
           rel="noopener noreferrer"
-        />
+          :aria-label="link.label"
+          class="text-2xl text-zinc-500 dark:text-white/40 hover:text-accent transition-colors"
+        >
+          <i
+            v-if="link.icon"
+            :class="link.icon"
+          />
+          <span
+            v-else
+            class="text-base font-mono"
+          >{{ link.text }}</span>
+        </a>
       </div>
-      <div class="w-16 h-px bg-white/20 mx-auto mb-6" />
-      <p class="text-sm text-white/30">
+      <div class="w-16 h-px bg-zinc-300 dark:bg-white/20 mx-auto mb-6" />
+      <p class="text-sm font-mono text-zinc-500 dark:text-white/30">
         &copy; {{ currentYear }} Tatsuya Miyamoto
       </p>
     </div>
