@@ -1,0 +1,63 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+@theme static {
+  --font-sans: "Noto Sans JP", "Yu Gothic", sans-serif;
+  --font-mono: "IBM Plex Mono", "SFMono-Regular", monospace;
+}
+
+:root {
+  --portfolio-bg: #f5f5f2;
+  --portfolio-surface: #ffffff;
+  --portfolio-text: #0f172a;
+  --portfolio-muted: #526071;
+  --portfolio-line: #cbd5e1;
+}
+
+.dark {
+  --portfolio-bg: #020b14;
+  --portfolio-surface: #07131f;
+  --portfolio-text: #f8fafc;
+  --portfolio-muted: #93a4b7;
+  --portfolio-line: #1e3447;
+}
+
+html {
+  background: var(--portfolio-bg);
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  background: var(--portfolio-bg);
+  color: var(--portfolio-text);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+}
+
+section[id] {
+  scroll-margin-top: 5.5rem;
+}
+
+::selection {
+  background: #22d3ee;
+  color: #020617;
+}
+
+.focus-ring:focus-visible {
+  outline: 2px solid #22d3ee;
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
