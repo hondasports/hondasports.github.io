@@ -60,7 +60,19 @@ function closeMobileMenu(): void {
 </script>
 
 <template>
-  <div class="min-h-screen bg-[var(--portfolio-bg)] text-[var(--portfolio-text)]">
+  <div class="relative min-h-screen text-[var(--portfolio-text)]">
+    <div class="fixed inset-0 -z-50">
+      <img
+        src="/background-hd.png"
+        alt=""
+        width="1920"
+        height="1280"
+        fetchpriority="high"
+        class="size-full object-cover object-center"
+      >
+      <div class="absolute inset-0 bg-[#020b14]/65" />
+    </div>
+
     <header class="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#020b14]/90 text-white backdrop-blur-xl">
       <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-12">
         <a
@@ -128,19 +140,8 @@ function closeMobileMenu(): void {
     <main>
       <section
         id="top"
-        class="relative isolate flex min-h-[660px] items-end overflow-hidden bg-[#020b14] pt-16 text-white lg:min-h-[620px]"
+        class="relative isolate flex min-h-[660px] items-end overflow-hidden bg-[#020b14]/40 pt-16 text-white lg:min-h-[620px]"
       >
-        <img
-          src="/background-hd.png"
-          alt="夕暮れの道とバイクのシルエット"
-          width="1920"
-          height="1280"
-          fetchpriority="high"
-          class="absolute inset-0 -z-30 size-full object-cover object-center"
-        >
-        <div class="absolute inset-0 -z-20 bg-[#020b14]/45" />
-        <div class="absolute inset-y-0 left-0 -z-10 w-full bg-[#020b14]/60 md:w-[58%] md:bg-[#020b14]/80" />
-
         <div class="mx-auto w-full max-w-7xl px-5 pb-12 pt-28 sm:px-8 sm:pb-16 lg:px-12 lg:pb-20">
           <div class="max-w-4xl">
             <p class="mb-5 flex items-center gap-3 font-mono text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300 sm:text-sm">
@@ -181,7 +182,7 @@ function closeMobileMenu(): void {
 
       <section
         id="about"
-        class="border-b border-[var(--portfolio-line)]"
+        class="border-b border-[var(--portfolio-line)] bg-[var(--portfolio-bg)]/92"
       >
         <div class="mx-auto grid max-w-7xl gap-14 px-5 py-20 sm:px-8 lg:grid-cols-[0.82fr_1.18fr] lg:gap-20 lg:px-12 lg:py-28">
           <div>
@@ -216,7 +217,10 @@ function closeMobileMenu(): void {
         </div>
       </section>
 
-      <section id="content">
+      <section
+        id="content"
+        class="bg-[var(--portfolio-bg)]/92"
+      >
         <div class="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
           <div class="mb-12 flex items-end justify-between gap-6">
             <div>
@@ -280,7 +284,7 @@ function closeMobileMenu(): void {
       </section>
     </main>
 
-    <footer class="border-t border-[var(--portfolio-line)]">
+    <footer class="border-t border-[var(--portfolio-line)] bg-[var(--portfolio-bg)]/92">
       <div class="mx-auto flex max-w-7xl flex-col gap-3 px-5 py-8 text-xs text-[var(--portfolio-muted)] sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-12">
         <p>© 2026 Tatsuya Miyamoto</p>
         <a
