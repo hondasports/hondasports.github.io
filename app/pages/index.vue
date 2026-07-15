@@ -70,7 +70,7 @@ function closeMobileMenu(): void {
         fetchpriority="high"
         class="size-full object-cover object-center"
       >
-      <div class="absolute inset-0 bg-[#020b14]/65" />
+      <div class="absolute inset-0 bg-[#020b14]/50" />
     </div>
 
     <header class="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#020b14]/90 text-white backdrop-blur-xl">
@@ -140,7 +140,7 @@ function closeMobileMenu(): void {
     <main>
       <section
         id="top"
-        class="relative isolate flex min-h-[660px] items-end overflow-hidden bg-[#020b14]/40 pt-16 text-white lg:min-h-[620px]"
+        class="relative isolate flex min-h-[660px] items-end overflow-hidden bg-[#020b14]/25 pt-16 text-white lg:min-h-[620px]"
       >
         <div class="mx-auto w-full max-w-7xl px-5 pb-12 pt-28 sm:px-8 sm:pb-16 lg:px-12 lg:pb-20">
           <div class="max-w-4xl">
@@ -182,7 +182,7 @@ function closeMobileMenu(): void {
 
       <section
         id="about"
-        class="border-b border-[var(--portfolio-line)] bg-[var(--portfolio-bg)]/92"
+        class="border-b border-[var(--portfolio-line)] bg-[var(--portfolio-bg)]/88"
       >
         <div class="mx-auto grid max-w-7xl gap-14 px-5 py-20 sm:px-8 lg:grid-cols-[0.82fr_1.18fr] lg:gap-20 lg:px-12 lg:py-28">
           <div>
@@ -219,7 +219,7 @@ function closeMobileMenu(): void {
 
       <section
         id="content"
-        class="bg-[var(--portfolio-bg)]/92"
+        class="bg-[var(--portfolio-bg)]/88"
       >
         <div class="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
           <div class="mb-12 flex items-end justify-between gap-6">
@@ -284,7 +284,7 @@ function closeMobileMenu(): void {
       </section>
     </main>
 
-    <footer class="border-t border-[var(--portfolio-line)] bg-[var(--portfolio-bg)]/92">
+    <footer class="border-t border-[var(--portfolio-line)] bg-[var(--portfolio-bg)]/88">
       <div class="mx-auto flex max-w-7xl flex-col gap-3 px-5 py-8 text-xs text-[var(--portfolio-muted)] sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-12">
         <p>© 2026 Tatsuya Miyamoto</p>
         <a
