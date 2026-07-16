@@ -182,7 +182,7 @@ function closeMobileMenu(): void {
 
       <section
         id="about"
-        class="border-b border-[var(--portfolio-line)] bg-[var(--portfolio-bg)]/88"
+        class="border-b border-[var(--portfolio-line)] bg-[var(--portfolio-bg)]/75"
       >
         <div class="mx-auto grid max-w-7xl gap-14 px-5 py-20 sm:px-8 lg:grid-cols-[0.82fr_1.18fr] lg:gap-20 lg:px-12 lg:py-28">
           <div>
@@ -219,7 +219,7 @@ function closeMobileMenu(): void {
 
       <section
         id="content"
-        class="bg-[var(--portfolio-bg)]/88"
+        class="bg-[var(--portfolio-bg)]/75"
       >
         <div class="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
           <div class="mb-12 flex items-end justify-between gap-6">
@@ -243,7 +243,7 @@ function closeMobileMenu(): void {
               :href="project.href"
               target="_blank"
               rel="noopener noreferrer"
-              class="focus-ring group flex min-h-80 flex-col bg-[var(--portfolio-surface)] p-7 transition-colors hover:bg-slate-100 dark:hover:bg-slate-900 sm:p-9"
+              class="focus-ring group flex min-h-80 flex-col bg-[var(--portfolio-surface)]/85 p-7 transition-colors hover:bg-slate-100/80 dark:hover:bg-slate-900/80 sm:p-9"
             >
               <div class="mb-10 flex items-start justify-between">
                 <span
