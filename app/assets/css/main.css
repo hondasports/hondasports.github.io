@@ -49,6 +49,12 @@ section[id] {
   outline-offset: 4px;
 }
 
+.gpu-layer {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

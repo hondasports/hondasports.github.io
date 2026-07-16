@@ -61,14 +61,15 @@ function closeMobileMenu(): void {
 
 <template>
   <div class="relative min-h-screen text-[var(--portfolio-text)]">
-    <div class="fixed inset-0 -z-50">
+    <div class="fixed inset-0 -z-50 gpu-layer">
       <img
         src="/background-hd.png"
         alt=""
         width="1920"
         height="1280"
         fetchpriority="high"
-        class="size-full object-cover object-center"
+        decoding="async"
+        class="gpu-layer size-full object-cover object-center"
       >
       <div class="absolute inset-0 bg-[#020b14]/50" />
     </div>
