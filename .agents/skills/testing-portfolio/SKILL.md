@@ -13,8 +13,6 @@ Nuxt 4 static portfolio site using Nuxt UI 4, Tailwind CSS 4, and Vue 3. It depl
 
 ```bash
 mise install
-corepack enable
-corepack prepare pnpm@9.14.4 --activate
 pnpm install
 pnpm dev
 ```
