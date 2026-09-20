@@ -21,8 +21,7 @@ https://hondasports.github.io/
 ## セットアップ
 
 ```bash
-nvm install
-nvm use
+mise install
 corepack enable
 corepack prepare pnpm@9.14.4 --activate
 pnpm install
