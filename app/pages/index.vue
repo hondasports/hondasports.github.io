@@ -54,19 +54,6 @@ const projects = [
   },
 ]
 
-const marqueeItems = [
-  'Vue',
-  'React',
-  'TypeScript',
-  'Nuxt',
-  'Tailwind CSS',
-  'Java',
-  'PHP',
-  'Python',
-  'Perl',
-  'Convex',
-]
-
 const activeSection = ref('top')
 const scrollProgress = ref(0)
 const heroShift = ref(0)
@@ -287,27 +274,6 @@ function closeMobileMenu(): void {
           </span>
         </div>
       </section>
-
-      <div
-        class="marquee-mask overflow-hidden border-y border-[var(--portfolio-line)] bg-[var(--portfolio-bg)]/60 py-6 backdrop-blur-sm"
-        aria-hidden="true"
-      >
-        <div class="marquee-track items-center">
-          <template
-            v-for="copy in 2"
-            :key="copy"
-          >
-            <span
-              v-for="item in marqueeItems"
-              :key="`${copy}-${item}`"
-              class="flex items-center gap-10 whitespace-nowrap pr-10 font-display text-3xl font-bold uppercase tracking-tight text-[var(--portfolio-muted)] sm:text-4xl"
-            >
-              {{ item }}
-              <span class="text-xl text-cyan-400">✦</span>
-            </span>
-          </template>
-        </div>
-      </div>
 
       <section
         id="about"
