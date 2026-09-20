@@ -22,8 +22,6 @@ https://hondasports.github.io/
 
 ```bash
 mise install
-corepack enable
-corepack prepare pnpm@9.14.4 --activate
 pnpm install
 ```
 
