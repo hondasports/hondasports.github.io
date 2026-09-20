@@ -218,7 +218,7 @@ function closeMobileMenu(): void {
     <main>
       <section
         id="top"
-        class="relative isolate flex min-h-[660px] items-end overflow-hidden bg-[#020b14]/25 pt-16 lg:min-h-[620px]"
+        class="relative isolate flex min-h-[660px] items-end overflow-hidden bg-[#020b14]/25 pt-16 text-white lg:min-h-[620px]"
       >
         <div
           class="mx-auto w-full max-w-7xl px-5 pb-12 pt-28 will-change-transform sm:px-8 sm:pb-16 lg:px-12 lg:pb-20"
