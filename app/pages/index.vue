@@ -2,10 +2,10 @@
 const mobileMenuOpen = ref(false)
 
 const navigation = [
-  { label: 'トップ', href: '#top' },
-  { label: '自己紹介', href: '#about' },
-  { label: 'スキル', href: '#skill' },
-  { label: 'コンテンツ', href: '#content' },
+  { label: 'トップ', href: '#top', id: 'top' },
+  { label: '自己紹介', href: '#about', id: 'about' },
+  { label: 'スキル', href: '#skill', id: 'skill' },
+  { label: 'コンテンツ', href: '#content', id: 'content' },
 ]
 
 const socialLinks = [
@@ -54,6 +54,72 @@ const projects = [
   },
 ]
 
+const marqueeItems = [
+  'Vue',
+  'React',
+  'TypeScript',
+  'Nuxt',
+  'Tailwind CSS',
+  'Java',
+  'PHP',
+  'Python',
+  'Perl',
+  'Convex',
+]
+
+const activeSection = ref('top')
+const scrollProgress = ref(0)
+const heroShift = ref(0)
+const heroFade = ref(1)
+const scrolled = ref(false)
+
+onMounted(() => {
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  let ticking = false
+
+  const update = (): void => {
+    ticking = false
+    const y = window.scrollY
+    scrolled.value = y > 24
+
+    const max = document.documentElement.scrollHeight - window.innerHeight
+    scrollProgress.value = max > 0 ? Math.min(y / max, 1) : 0
+
+    if (!reducedMotion) {
+      heroShift.value = Math.min(y * 0.28, 320)
+      heroFade.value = Math.max(0, 1 - y / 520)
+    }
+
+    let best = 'top'
+    let bestDistance = Infinity
+    for (const item of navigation) {
+      const el = document.getElementById(item.id)
+      if (!el) continue
+      const rect = el.getBoundingClientRect()
+      const distance = Math.abs(rect.top + rect.height / 2 - window.innerHeight / 2)
+      if (distance < bestDistance) {
+        bestDistance = distance
+        best = item.id
+      }
+    }
+    activeSection.value = best
+  }
+
+  const onScroll = (): void => {
+    if (!ticking) {
+      ticking = true
+      requestAnimationFrame(update)
+    }
+  }
+
+  update()
+  window.addEventListener('scroll', onScroll, { passive: true })
+
+  onBeforeUnmount(() => {
+    window.removeEventListener('scroll', onScroll)
+  })
+})
+
 function closeMobileMenu(): void {
   mobileMenuOpen.value = false
 }
@@ -61,6 +127,12 @@ function closeMobileMenu(): void {
 
 <template>
   <div class="relative min-h-screen text-[var(--portfolio-text)]">
+    <div
+      class="fixed inset-x-0 top-0 z-[60] h-0.5 origin-left bg-cyan-400"
+      :style="{ transform: `scaleX(${scrollProgress})` }"
+      aria-hidden="true"
+    />
+
     <div class="fixed inset-0 -z-50 gpu-layer">
       <img
         src="/background-hd.png"
@@ -74,7 +146,10 @@ function closeMobileMenu(): void {
       <div class="absolute inset-0 bg-[#020b14]/50" />
     </div>
 
-    <header class="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#020b14]/90 text-white backdrop-blur-xl">
+    <header
+      class="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#020b14]/90 text-white backdrop-blur-xl transition-shadow duration-500"
+      :class="{ 'shadow-lg shadow-cyan-950/40': scrolled }"
+    >
       <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-12">
         <a
           href="#top"
@@ -94,7 +169,9 @@ function closeMobileMenu(): void {
               v-for="item in navigation"
               :key="item.href"
               :href="item.href"
-              class="focus-ring rounded-sm text-xs font-medium tracking-wider text-slate-300 transition-colors hover:text-cyan-300"
+              class="nav-link focus-ring rounded-sm text-xs font-medium tracking-wider text-slate-300 transition-colors hover:text-cyan-300"
+              :class="{ 'nav-active': activeSection === item.id }"
+              :aria-current="activeSection === item.id ? 'true' : undefined"
             >
               {{ item.label }}
             </a>
@@ -141,34 +218,53 @@ function closeMobileMenu(): void {
     <main>
       <section
         id="top"
-        class="relative isolate flex min-h-[660px] items-end overflow-hidden bg-[#020b14]/25 pt-16 text-white lg:min-h-[620px]"
+        class="relative isolate flex min-h-[660px] items-end overflow-hidden bg-[#020b14]/25 pt-16 lg:min-h-[620px]"
       >
-        <div class="mx-auto w-full max-w-7xl px-5 pb-12 pt-28 sm:px-8 sm:pb-16 lg:px-12 lg:pb-20">
+        <div
+          class="mx-auto w-full max-w-7xl px-5 pb-12 pt-28 will-change-transform sm:px-8 sm:pb-16 lg:px-12 lg:pb-20"
+          :style="{ transform: `translate3d(0, ${heroShift}px, 0)`, opacity: heroFade }"
+        >
           <div class="max-w-4xl">
-            <p class="mb-5 flex items-center gap-3 font-mono text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300 sm:text-sm">
+            <p class="anim-fade mb-5 flex items-center gap-3 font-mono text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300 sm:text-sm">
               <span class="h-px w-10 bg-cyan-300" />
               Frontend Developer
             </p>
-            <h1 class="text-[clamp(3.25rem,9vw,6.5rem)] font-black leading-[0.86] tracking-[-0.075em]">
-              <span class="block">Tatsuya</span>
-              <span class="block text-cyan-300">Miyamoto</span>
+            <h1 class="font-display text-[clamp(3.25rem,9vw,6.5rem)] font-bold leading-[0.95] tracking-[-0.03em]">
+              <span class="hero-line">
+                <span>Tatsuya</span>
+              </span>
+              <span class="hero-line">
+                <span
+                  class="text-cyan-300"
+                  style="--rise-delay: 130ms"
+                >Miyamoto</span>
+              </span>
             </h1>
-            <p class="mt-8 text-xl font-bold tracking-tight sm:text-2xl">
+            <p
+              class="anim-fade mt-8 text-xl font-bold tracking-tight sm:text-2xl"
+              style="--rise-delay: 380ms"
+            >
               プログラミングは人生の一部
             </p>
-            <p class="mt-4 max-w-2xl text-sm leading-7 text-slate-200 sm:text-base sm:leading-8">
+            <p
+              class="anim-fade mt-4 max-w-2xl text-sm leading-7 text-slate-200 sm:text-base sm:leading-8"
+              style="--rise-delay: 500ms"
+            >
               フロントエンドを主軸に、バックエンドから組み込みまで幅広く経験。シンプルで使いやすいシステムを作ることを信条にしています。
             </p>
 
-            <div class="mt-8 flex max-w-3xl flex-wrap items-center gap-x-5 gap-y-4">
+            <div
+              class="anim-fade mt-8 flex max-w-3xl flex-wrap items-center gap-x-5 gap-y-4"
+              style="--rise-delay: 650ms"
+            >
               <a
                 v-for="link in socialLinks"
                 :key="link.label"
                 :href="link.href"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="focus-ring group inline-flex items-center gap-2 rounded-sm text-xs font-semibold tracking-wide transition-colors"
-                :class="link.featured ? 'border border-cyan-300/50 bg-cyan-300/10 px-3 py-2 text-cyan-200 hover:bg-cyan-300/20' : 'text-slate-300 hover:text-cyan-300'"
+                class="focus-ring group inline-flex items-center gap-2 rounded-sm text-xs font-semibold tracking-wide transition-all duration-300"
+                :class="link.featured ? 'border border-cyan-300/50 bg-cyan-300/10 px-3 py-2 text-cyan-200 hover:-translate-y-0.5 hover:bg-cyan-300/20' : 'text-slate-300 hover:-translate-y-0.5 hover:text-cyan-300'"
               >
                 <UIcon
                   :name="link.icon"
@@ -179,36 +275,95 @@ function closeMobileMenu(): void {
             </div>
           </div>
         </div>
+
+        <div
+          class="anim-fade absolute bottom-8 right-6 hidden flex-col items-center gap-2 text-slate-300 sm:flex lg:right-12"
+          style="--rise-delay: 900ms"
+          aria-hidden="true"
+        >
+          <span class="font-mono text-[10px] tracking-[0.3em]">SCROLL</span>
+          <span class="relative block h-10 w-px overflow-hidden bg-white/20">
+            <span class="scroll-hint-dot absolute left-0 top-0 h-4 w-px bg-cyan-300" />
+          </span>
+        </div>
       </section>
+
+      <div
+        class="marquee-mask overflow-hidden border-y border-[var(--portfolio-line)] bg-[var(--portfolio-bg)]/60 py-6 backdrop-blur-sm"
+        aria-hidden="true"
+      >
+        <div class="marquee-track items-center">
+          <template
+            v-for="copy in 2"
+            :key="copy"
+          >
+            <span
+              v-for="item in marqueeItems"
+              :key="`${copy}-${item}`"
+              class="flex items-center gap-10 whitespace-nowrap pr-10 font-display text-3xl font-bold uppercase tracking-tight text-[var(--portfolio-muted)] sm:text-4xl"
+            >
+              {{ item }}
+              <span class="text-xl text-cyan-400">✦</span>
+            </span>
+          </template>
+        </div>
+      </div>
 
       <section
         id="about"
-        class="border-b border-[var(--portfolio-line)] bg-[var(--portfolio-bg)]/75"
+        class="overflow-hidden border-b border-[var(--portfolio-line)] bg-[var(--portfolio-bg)]/75"
       >
         <div class="mx-auto grid max-w-7xl gap-14 px-5 py-20 sm:px-8 lg:grid-cols-[0.82fr_1.18fr] lg:gap-20 lg:px-12 lg:py-28">
-          <div>
-            <p class="mb-4 font-mono text-xs font-semibold tracking-[0.2em] text-cyan-500 dark:text-cyan-300">
+          <div class="relative">
+            <span
+              class="ghost-heading"
+              aria-hidden="true"
+            >ABOUT</span>
+            <p
+              v-reveal
+              class="mb-4 font-mono text-xs font-semibold tracking-[0.2em] text-cyan-500 dark:text-cyan-300"
+            >
               01 / ABOUT
             </p>
-            <h2 class="text-4xl font-black tracking-[-0.05em] sm:text-5xl">
+            <h2
+              v-reveal="80"
+              class="text-4xl font-black tracking-[-0.05em] sm:text-5xl"
+            >
               自己紹介
             </h2>
-            <p class="mt-7 text-base leading-8 text-[var(--portfolio-muted)]">
+            <p
+              v-reveal="160"
+              class="mt-7 text-base leading-8 text-[var(--portfolio-muted)]"
+            >
               工業高校時代にインターネットにのめり込み、卒業後プログラマとしてキャリアを開始。 初めて業務で先輩から教えてもらった言語はC言語とJavaを経験。その後、外資系半導体企業で社内SEからSIerへ転職し主にJava, Perl, MFCを業務で使用。2018年中旬にメーカ系企業に転職し主にフロントエンド(PHP, Vue)を担当。 趣味は、バイクでのツーリング。
             </p>
           </div>
 
-          <div id="skill">
-            <p class="mb-4 font-mono text-xs font-semibold tracking-[0.2em] text-cyan-500 dark:text-cyan-300">
+          <div
+            id="skill"
+            class="relative"
+          >
+            <span
+              class="ghost-heading"
+              aria-hidden="true"
+            >SKILLS</span>
+            <p
+              v-reveal
+              class="mb-4 font-mono text-xs font-semibold tracking-[0.2em] text-cyan-500 dark:text-cyan-300"
+            >
               02 / SKILLS
             </p>
-            <h2 class="mb-8 text-4xl font-black tracking-[-0.05em] sm:text-5xl">
+            <h2
+              v-reveal="80"
+              class="mb-8 text-4xl font-black tracking-[-0.05em] sm:text-5xl"
+            >
               スキル
             </h2>
             <div class="grid gap-x-10 md:grid-cols-2">
               <SkillCard
-                v-for="skill in skills"
+                v-for="(skill, i) in skills"
                 :key="skill.title"
+                v-reveal="120 + i * 70"
                 :title="skill.title"
                 :description="skill.description"
                 :use-year="skill.useYear"
@@ -220,35 +375,53 @@ function closeMobileMenu(): void {
 
       <section
         id="content"
-        class="bg-[var(--portfolio-bg)]/75"
+        class="overflow-hidden bg-[var(--portfolio-bg)]/75"
       >
         <div class="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
-          <div class="mb-12 flex items-end justify-between gap-6">
+          <div class="relative mb-12 flex items-end justify-between gap-6">
+            <span
+              class="ghost-heading"
+              aria-hidden="true"
+            >WORKS</span>
             <div>
-              <p class="mb-4 font-mono text-xs font-semibold tracking-[0.2em] text-cyan-500 dark:text-cyan-300">
+              <p
+                v-reveal
+                class="mb-4 font-mono text-xs font-semibold tracking-[0.2em] text-cyan-500 dark:text-cyan-300"
+              >
                 03 / WORKS
               </p>
-              <h2 class="text-4xl font-black tracking-[-0.05em] sm:text-5xl">
+              <h2
+                v-reveal="80"
+                class="text-4xl font-black tracking-[-0.05em] sm:text-5xl"
+              >
                 制作実績
               </h2>
             </div>
-            <p class="hidden max-w-sm text-right text-sm leading-7 text-[var(--portfolio-muted)] md:block">
+            <p
+              v-reveal="160"
+              class="hidden max-w-sm text-right text-sm leading-7 text-[var(--portfolio-muted)] md:block"
+            >
               個人で企画・設計・実装したプロジェクト
             </p>
           </div>
 
           <div class="grid gap-px overflow-hidden border border-[var(--portfolio-line)] bg-[var(--portfolio-line)] lg:grid-cols-3">
             <a
-              v-for="project in projects"
+              v-for="(project, i) in projects"
               :key="project.title"
+              v-reveal="i * 120"
               :href="project.href"
               target="_blank"
               rel="noopener noreferrer"
-              class="focus-ring group flex min-h-80 flex-col bg-[var(--portfolio-surface)]/85 p-7 transition-colors hover:bg-slate-100/80 dark:hover:bg-slate-900/80 sm:p-9"
+              class="focus-ring group relative flex min-h-80 flex-col overflow-hidden bg-[var(--portfolio-surface)]/85 p-7 transition-all duration-500 hover:-translate-y-1.5 hover:z-10 hover:bg-slate-100/80 sm:p-9 dark:hover:bg-slate-900/80"
             >
+              <span
+                class="pointer-events-none absolute inset-0 -translate-x-[110%] bg-gradient-to-r from-transparent via-cyan-300/10 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-[110%]"
+                aria-hidden="true"
+              />
               <div class="mb-10 flex items-start justify-between">
                 <span
-                  class="flex size-14 items-center justify-center text-white"
+                  class="flex size-14 items-center justify-center text-white transition-transform duration-500 group-hover:-rotate-6 group-hover:scale-110"
                   :class="project.accent"
                 >
                   <UIcon
@@ -285,7 +458,17 @@ function closeMobileMenu(): void {
       </section>
     </main>
 
-    <footer class="border-t border-[var(--portfolio-line)] bg-[var(--portfolio-bg)]/88">
+    <footer class="overflow-hidden border-t border-[var(--portfolio-line)] bg-[var(--portfolio-bg)]/88">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+        <p
+          v-reveal
+          class="border-b border-[var(--portfolio-line)] py-8 text-center font-display text-[clamp(2.75rem,11vw,9rem)] font-bold leading-none tracking-tight"
+          style="color: transparent; -webkit-text-stroke: 1px rgb(148 163 184 / 0.3)"
+          aria-hidden="true"
+        >
+          Tatsuya Miyamoto
+        </p>
+      </div>
       <div class="mx-auto flex max-w-7xl flex-col gap-3 px-5 py-8 text-xs text-[var(--portfolio-muted)] sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-12">
         <p>© 2026 Tatsuya Miyamoto</p>
         <a
