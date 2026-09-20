@@ -17,11 +17,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: Setup mise
         uses: jdx/mise-action@v4
       - name: Cache pnpm store
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ~/.local/share/pnpm/store/v3
           key: ${{ runner.os }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
@@ -32,7 +32,7 @@ jobs:
         run: pnpm run lint
       - run: pnpm generate
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v5
         with:
           path: ./dist
   deploy:
