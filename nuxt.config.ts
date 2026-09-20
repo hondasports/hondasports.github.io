@@ -51,6 +51,12 @@ export default defineNuxtConfig({
         weights: [400, 500, 600],
         global: true,
       },
+      {
+        name: 'Space Grotesk',
+        provider: 'google',
+        weights: [500, 600, 700],
+        global: true,
+      },
     ],
   },
   gtag: {
